@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome DApp</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <h2>Welcome Developers DApp</h2>
+
+  <button id="connect">Connect MetaMask</button>
+  <br><br>
+
+  <button id="viewMessage">View Message</button>
+  <p><strong>Message from Contract:</strong> <span id="messageDisplay">[Not Fetched]</span></p>
+
+  <hr>
+
+  <input type="text" id="newMessage" placeholder="Enter new message" />
+  <button id="setMessage">Set Message</button>
+  <p id="statusMsg"></p>
+
+  <script>
+    const connectBtn = document.getElementById("connect");
+    const viewMessageBtn = document.getElementById("viewMessage");
+    const setMessageBtn = document.getElementById("setMessage");
+    const messageDisplay = document.getElementById("messageDisplay");
+    const statusMsg = document.getElementById("statusMsg");
+
+    const contractAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
+    const contractABI = [
+      "function getMessage() view returns (string)",
+      "function setMessage(string memory) public"
+    ];
+
+    let provider, signer, contract;
+
+    connectBtn.onclick = async () => {
+      if (typeof window.ethereum !== "undefined") {
+        try {
+          await window.ethereum.request({ method: "eth_requestAccounts" });
+          provider = new ethers.BrowserProvider(window.ethereum);
+          signer = await provider.getSigner();
+          contract = new ethers.Contract(contractAddress, contractABI, signer);
+          alert("Connected to MetaMask!");
+        } catch (err) {
+          console.error("MetaMask access denied", err);
+        }
+      } else {
+        alert("Please install MetaMask!");
+      }
+    };
+
+    viewMessageBtn.onclick = async () => {
+      if (!contract) return alert("Connect MetaMask first.");
+      try {
+        const message = await contract.getMessage();
+        messageDisplay.innerText = message;
+      } catch (err) {
+        console.error(err);
+        messageDisplay.innerText = "[Error fetching message]";
+      }
+    };
+
+    setMessageBtn.onclick = async () => {
+      if (!contract) return alert("Connect MetaMask first.");
+      const newMessage = document.getElementById("newMessage").value;
+      if (!newMessage.trim()) return alert("Message cannot be empty.");
+
+      try {
+        const tx = await contract.setMessage(newMessage);
+        statusMsg.innerText = "Transaction sent. Waiting for confirmation...";
+        await tx.wait();
+        statusMsg.innerText = "Message updated successfully!";
+      } catch (err) {
+        console.error(err);
+        statusMsg.innerText = "Failed to update message.";
+      }
+    };
+  </script>
+</body>
+</html>
