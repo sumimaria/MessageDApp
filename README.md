@@ -41,8 +41,8 @@ contract WelcomeDevelopers {
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/welcome-dapp.git
-cd welcome-dapp
+git clone https://github.com/sumimaria/MessageDApp.git
+cd MessageDApp
 
 ``` 
 
@@ -72,7 +72,7 @@ npx hardhat run scripts/deploy.js --network localhost
 
 After deployment, copy the deployed contract address. You'll use it in the frontend.
 
-## 🌍 Host Frontend with Vercel
+## 🌍 Host Frontend 
 ### 1. Navigate to Frontend Folder
 ```bash
 cd frontend
@@ -84,16 +84,20 @@ Update the contractAddress variable in your index.html file:
 ```bash
 const contractAddress = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
 
+```
+
+### 🔍 To Serve Frontend Locally:
+From the frontend/ folder:
+```bash
+npx serve .
+
 ``` 
 
-### 3. Deploy on Vercel
-Push your project to GitHub
+###  Deploy on Vercel
 
 Go to https://vercel.com
 
 Import the GitHub repo
-
-Choose frontend as the root directory (if needed)
 
 Click Deploy
 
@@ -108,14 +112,9 @@ Vercel account (free)
 
 Python (for local frontend preview if needed)
 
-## 🔍 To Serve Frontend Locally:
-From the frontend/ folder:
-```bash
-python3 -m http.server
 
-``` 
 Then go to:
 ```bash
-http://localhost:8000
+http://localhost:3000
 
 ``` 
