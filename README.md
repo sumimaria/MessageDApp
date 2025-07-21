@@ -104,17 +104,9 @@ Click Deploy
 Your frontend will be live on a Vercel URL.
 
 ## 💡 Requirements
-MetaMask extension installed in your browser
+MetaMask extension installed in your browser: make sure the hardhat accounts are imported in your metamask to interact with hardhat instance
 
 Node.js and npm
 
 Vercel account (free)
 
-Python (for local frontend preview if needed)
-
-
-Then go to:
-```bash
-http://localhost:3000
-
-``` 
