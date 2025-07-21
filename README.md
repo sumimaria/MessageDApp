@@ -44,43 +44,49 @@ contract WelcomeDevelopers {
 git clone https://github.com/YOUR_USERNAME/welcome-dapp.git
 cd welcome-dapp
 
-🚀 How to Run Locally
-1. Clone the Repository
-```bash
-git clone https://github.com/YOUR_USERNAME/welcome-dapp.git
-cd welcome-dapp
+``` 
 
-2. Install Dependencies
+
+### 2. Install Dependencies
 ```bash
 npm install
 
+``` 
 
-3. Compile the Smart Contract
+### 3. Compile the Smart Contract
 ```bash
 npx hardhat compile
 
-4. Deploy the Contract Locally
+``` 
+### 4. Deploy the Contract Locally
 First, start a local Hardhat network:
 ```bash
 npx hardhat node
+
+``` 
 In another terminal window, deploy the contract:
 ```bash
 npx hardhat run scripts/deploy.js --network localhost
+
+```
+
 After deployment, copy the deployed contract address. You'll use it in the frontend.
 
-🌍 Host Frontend with Vercel
-1. Navigate to Frontend Folder
+## 🌍 Host Frontend with Vercel
+### 1. Navigate to Frontend Folder
 ```bash
 cd frontend
 
+``` 
 
-2. Set the Contract Address
+### 2. Set the Contract Address
 Update the contractAddress variable in your index.html file:
 ```bash
 const contractAddress = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
 
+``` 
 
-3. Deploy on Vercel
+### 3. Deploy on Vercel
 Push your project to GitHub
 
 Go to https://vercel.com
@@ -93,7 +99,7 @@ Click Deploy
 
 Your frontend will be live on a Vercel URL.
 
-💡 Requirements
+## 💡 Requirements
 MetaMask extension installed in your browser
 
 Node.js and npm
@@ -102,16 +108,14 @@ Vercel account (free)
 
 Python (for local frontend preview if needed)
 
-🔍 To Serve Frontend Locally:
+## 🔍 To Serve Frontend Locally:
 From the frontend/ folder:
-
-bash
-Copy
-Edit
+```bash
 python3 -m http.server
-Then go to:
 
-arduino
-Copy
-Edit
+``` 
+Then go to:
+```bash
 http://localhost:8000
+
+``` 
